@@ -57,13 +57,11 @@ class mainPaige extends Component {
         this.getTodos();
     }
     render() {
-        if(this.state.isLoading) {
+        const {isLoading, error} = this.state;
+        if(isLoading) {
             return (
                 <div>Loading ...</div>
             )
-        } else if(this.state.error) {
-            console.log(this.state.error)
-            return <div>ERror</div>
         }
         return (
             <div>
@@ -71,7 +69,7 @@ class mainPaige extends Component {
                     <input onChange = {this.onChange} type = "text" />
                     <input onClick = {this.addTodo} type = "submit" />
                 </form>
-                <TodoList todos = {this.state.todos}/>
+                {error ? <div>error</div> : <TodoList todos = {this.state.todos} />}
             </div>
         )
     }
